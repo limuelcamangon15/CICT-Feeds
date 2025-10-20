@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme using Material3 -->
+    <style name="Base.Theme.CICTFeeds" parent="Theme.AppCompat.DayNight.NoActionBar">
+
+        <item name="buttonStyle">@style/CustomPrimaryButton</item>
+
+        <item name="editTextStyle">@style/CustomEditText</item>
+
+        <item name="spinnerStyle">@style/CustomSpinner</item>
+
+        <item name="android:fontFamily">@font/poppins</item>
+        <!-- Optional: define other theme-level colors -->
+        <!-- <item name="colorPrimary">@color/blue</item> -->
+    </style>
+
+    <!-- Your actual app theme inherits from Base -->
+    <style name="Theme.CICTFeeds" parent="Base.Theme.CICTFeeds" />
+</resources>
