@@ -8,20 +8,23 @@
     android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="30dp"
     tools:context=".LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="30dp"
+        android:gravity="center">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -39,60 +42,69 @@
             android:text="Log In to your Account"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginTop="30dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Get the latest CICT updates in one place"
             android:textAlignment="center"
+            android:textColor="@color/lightGray700"
             android:textSize="12sp" />
 
         <EditText
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            style="@style/CustomEditText"
             android:drawableLeft="@drawable/icon_email"
             android:drawablePadding="5dp"
             android:hint="example@gmail.com"
             android:inputType="textEmailAddress" />
 
         <EditText
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            style="@style/CustomEditText"
             android:drawableLeft="@drawable/icon_password"
             android:drawablePadding="5dp"
             android:hint="Password"
             android:inputType="textPassword" />
 
         <Button
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            style="@style/CustomPrimaryButton"
             android:text="Log In" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/white"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:gravity="center">
+            android:textColor="@color/black"
+            android:text="Need an account? " />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Need an account? " />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Sign Up"
-                android:textColor="@color/orange"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/tvSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Sign Up"
+            android:textColor="@color/orange"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
