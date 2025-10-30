@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/screen_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/white"
+    tools:context=".ProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/logo"
+                android:contentDescription="App Logo" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CICT EventHub"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/orange"
+                android:textSize="16sp"
+                android:layout_marginLeft="8dp" />
+
+            <ImageView
+                android:id="@+id/ivSearch"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icon_search"
+                android:contentDescription="Search" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lightGray100" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Profile"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:layout_marginBottom="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/custom_edit_text"
+                android:padding="12dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/ivProfilePicture"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon_profile"
+                    android:contentDescription="Profile Picture" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="12dp">
+
+                    <TextView
+                        android:id="@+id/tvProfileName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Firstname Lastname"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvProfileEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2023100000@bulsu.edu.ph"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Personal Information"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGray100"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="First Name"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+
+            <EditText
+                android:id="@+id/etPersonalFirstName"
+                style="@style/CustomEditText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Firstname"
+                android:inputType="text"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Last Name"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:layout_marginTop="12dp" />
+
+            <EditText
+                android:id="@+id/etPersonalLastName"
+                style="@style/CustomEditText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Lastname"
+                android:inputType="text"
+                android:layout_marginTop="4dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Birthday"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <EditText
+                        android:id="@+id/etBirthday"
+                        style="@style/CustomEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:hint="Birthday"
+                        android:drawableRight="@drawable/icon_calendar"
+                        android:drawablePadding="5dp"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:inputType="none" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Gender"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/actvGender"
+                        style="@style/CustomAutoCompleteTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:hint="Gender"
+                        android:drawableRight="@drawable/icon_dropdown"
+                        android:drawablePadding="5dp"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:inputType="none" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etGenderOthers"
+                style="@style/CustomEditText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Please specify"
+                android:layout_marginTop="12dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:layout_marginTop="12dp" />
+
+            <EditText
+                android:id="@+id/etPersonalEmail"
+                style="@style/CustomEditText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="2023100000@bulsu.edu.ph"
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Academic Information"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGray100"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Course"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/gray"
+                android:textSize="12sp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/actvCourse"
+                style="@style/CustomAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Course"
+                android:drawableRight="@drawable/icon_dropdown"
+                android:drawablePadding="5dp"
+                android:focusable="false"
+                android:cursorVisible="false" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Year Level"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:layout_marginTop="12dp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/actvYearLevel"
+                style="@style/CustomAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Year Level"
+                android:drawableRight="@drawable/icon_dropdown"
+                android:drawablePadding="5dp"
+                android:focusable="false"
+                android:cursorVisible="false" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Section"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:layout_marginTop="12dp" />
+
+            <EditText
+                android:id="@+id/etSection"
+                style="@style/CustomEditText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Section" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Specialization"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:layout_marginTop="12dp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/actvSpecialization"
+                style="@style/CustomAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Specialization"
+                android:drawableRight="@drawable/icon_dropdown"
+                android:drawablePadding="5dp"
+                android:focusable="false"
+                android:cursorVisible="false" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
