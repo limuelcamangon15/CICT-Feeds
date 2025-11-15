@@ -142,7 +142,8 @@ https://tinyurl.com/SWITSMerchGuidelines"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/icon_heart"
+                android:src="@drawable/icon_heart_outlined"
+                android:layout_gravity="center"
                 />
 
             <View
