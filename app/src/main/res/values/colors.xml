@@ -2,10 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="green">#558B2F</color>
+    <color name="red">#AF1A1D</color>
     <color name="orange">#C4502D</color>
+    <color name="lightOrange">#EF6C00</color>
+    <color name="lightOrange100">#D67E33</color>
     <color name="blue">#4482FF</color>
     <color name="lightGray700">#2B2C34</color>
     <color name="lightGray100">#A2A1A1</color>
+    <color name="lightGray50">#E6E2E2</color>
     <color name="gray">#676767</color>
+    <color name="transparent">#00FFFFFF</color>
 
 </resources>

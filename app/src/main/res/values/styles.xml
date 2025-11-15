@@ -9,7 +9,6 @@
         <item name="textAllCaps">false</item>
     </style>
 
-
     <style name="CustomEditText" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/custom_edit_text</item>
         <item name="android:textColor">@color/black</item>
@@ -29,8 +28,8 @@
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textColorHint">@color/gray</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">7dp</item>
+        <item name="android:paddingBottom">7dp</item>
         <item name="android:paddingLeft">15dp</item>
         <item name="android:paddingRight">10dp</item>
     </style>
