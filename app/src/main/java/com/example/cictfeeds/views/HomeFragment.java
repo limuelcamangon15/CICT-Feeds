@@ -16,14 +16,23 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cictfeeds.R;
 import com.example.cictfeeds.models.Post;
+import com.example.cictfeeds.utils.SessionManager;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
     private LinearLayout llUpcomingEvents;
     private LinearLayout llPreviousEvents;
+    private  TextView tvWelcomeName;
+
+    //upcoming week tvs
+    private TextView tvFirstDayLabel, tvSecondDayLabel, tvThirdDayLabel, tvFourthDayLabel, tvFifthDayLabel, tvSixthDayLabel, tvSeventhDayLabel,
+    tvFirstDayNum, tvSecondDayNum, tvThirdDayNum, tvFourthDayNum, tvFifthDayNum, tvSixthDayNum, tvSeventhDayNum,
+    tvFirstDayEvent, tvSecondDayEvent, tvThirdDayEvent, tvFourthDayEvent, tvFifthDayEvent, tvSixthDayEvent, tvSeventhDayEvent;
     private ArrayList<Post> postList;
+
 
     public HomeFragment() {}
 
@@ -41,8 +50,12 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Initialize views properly
+        initializeTVUpcoming(view);
         llPreviousEvents = view.findViewById(R.id.llPreviousEvents);
         llUpcomingEvents = view.findViewById(R.id.llUpcomingEvents);
+        tvWelcomeName = view.findViewById(R.id.tvWelcomeName);
+
+        tvWelcomeName.setText(SessionManager.getCurrentStudent().getFirstname());
 
         postList = new ArrayList<>();
 
@@ -55,6 +68,48 @@ public class HomeFragment extends Fragment {
         renderPreviewPost(view);
 
     }
+
+    private void initializeTVUpcoming(View view){
+        // Day of Labels
+        tvFirstDayLabel = view.findViewById(R.id.tvFirstDayLabel);
+        tvSecondDayLabel = view.findViewById(R.id.tvSecondDayLabel);
+        tvThirdDayLabel = view.findViewById(R.id.tvThirdDayLabel);
+        tvFourthDayLabel = view.findViewById(R.id.tvFourthDayLabel);
+        tvFifthDayLabel = view.findViewById(R.id.tvFifthDayLabel);
+        tvSixthDayLabel = view.findViewById(R.id.tvSixthDayLabel);
+        tvSeventhDayLabel = view.findViewById(R.id.tvSeventhDayLabel);
+
+        // Day of Nums
+        tvFirstDayNum = view.findViewById(R.id.tvFirstDayNum);
+        tvSecondDayNum = view.findViewById(R.id.tvSecondDayNum);
+        tvThirdDayNum = view.findViewById(R.id.tvThirdDayNum);
+        tvFourthDayNum = view.findViewById(R.id.tvFourthDayNum);
+        tvFifthDayNum = view.findViewById(R.id.tvFifthDayNum);
+        tvSixthDayNum = view.findViewById(R.id.tvSixthDayNum);
+        tvSeventhDayNum = view.findViewById(R.id.tvSeventhDayNum);
+
+        // Num of Events
+        tvFirstDayEvent = view.findViewById(R.id.tvFirstDayEvent);
+        tvSecondDayEvent = view.findViewById(R.id.tvSecondDayEvent);
+        tvThirdDayEvent = view.findViewById(R.id.tvThirdDayEvent);
+        tvFourthDayEvent = view.findViewById(R.id.tvFourthDayEvent);
+        tvFifthDayEvent = view.findViewById(R.id.tvFifthDayEvent);
+        tvSixthDayEvent = view.findViewById(R.id.tvSixthDayEvent);
+        tvSeventhDayEvent = view.findViewById(R.id.tvSeventhDayEvent);
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
 
     private void renderPreviewPost(View rootView) {
         LayoutInflater inflater = LayoutInflater.from(requireContext());

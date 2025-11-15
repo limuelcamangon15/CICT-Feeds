@@ -73,9 +73,9 @@ public class SignupActivity extends AppCompatActivity {
         signupController = new SignupController();
 
         String[] courses = {
-                "BSIT",
-                "BSIS",
-                "BLIS"
+                "BS Information Technology",
+                "BS Information Systems",
+                "BL Information Science"
         };
 
         String[] years = {
@@ -204,8 +204,8 @@ public class SignupActivity extends AppCompatActivity {
                                         + "Name: " + student.getFirstname() + " " + student.getLastname() + "\n"
                                         + "Course: " + student.getCourse() + "\n"
                                         + "Year: " + student.getYear() + "\n"
-                                        + "Email: " + student.getEmail()
-                                        + "Email: " + student.getPassword()
+                                        + "Email: " + student.getEmail() + "\n"
+                                        + "Password: " + student.getPassword()
                         )
                         .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
                         .show();

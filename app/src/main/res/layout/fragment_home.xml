@@ -26,9 +26,9 @@
                 android:paddingLeft="10dp"/>
 
             <TextView
+                android:id="@+id/tvWelcomeName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Patrick!"
                 android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/black"
                 android:textSize="24sp"
@@ -66,6 +66,7 @@
                         android:paddingRight="10dp">
 
                         <TextView
+                            android:id="@+id/tvFirstDayLabel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="TUE"
@@ -74,6 +75,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvFirstDayNum"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="14"
@@ -82,6 +84,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvFirstDayEvent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="1 Event"
@@ -101,6 +104,7 @@
                         android:paddingRight="10dp">
 
                         <TextView
+                            android:id="@+id/tvSecondDayLabel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="TUE"
@@ -109,6 +113,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvSecondDayNum"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="14"
@@ -117,6 +122,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvSecondDayEvent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="1 Event"
@@ -136,6 +142,7 @@
                         android:paddingRight="10dp">
 
                         <TextView
+                            android:id="@+id/tvThirdDayLabel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="TUE"
@@ -144,6 +151,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvThirdDayNum"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="14"
@@ -152,6 +160,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvThirdDayEvent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="1 Event"
@@ -171,6 +180,7 @@
                         android:paddingRight="10dp">
 
                         <TextView
+                            android:id="@+id/tvFourthDayLabel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="TUE"
@@ -179,6 +189,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvFourthDayNum"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="14"
@@ -187,6 +198,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvFourthDayEvent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="1 Event"
@@ -206,6 +218,7 @@
                         android:paddingRight="10dp">
 
                         <TextView
+                            android:id="@+id/tvFifthDayLabel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="TUE"
@@ -214,6 +227,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvFifthDayNum"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="14"
@@ -222,6 +236,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvFifthDayEvent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="1 Event"
@@ -241,6 +256,7 @@
                         android:paddingRight="10dp">
 
                         <TextView
+                            android:id="@+id/tvSixthDayLabel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="TUE"
@@ -249,6 +265,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvSixthDayNum"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="14"
@@ -257,6 +274,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvSixthDayEvent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="1 Event"
@@ -276,6 +294,7 @@
                         android:paddingRight="10dp">
 
                         <TextView
+                            android:id="@+id/tvSeventhDayLabel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="TUE"
@@ -284,6 +303,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvSeventhDayNum"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="14"
@@ -292,6 +312,7 @@
                             android:fontFamily="@font/poppins_medium"/>
 
                         <TextView
+                            android:id="@+id/tvSeventhDayEvent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="1 Event"

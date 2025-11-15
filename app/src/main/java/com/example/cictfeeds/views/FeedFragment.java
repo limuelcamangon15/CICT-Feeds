@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.example.cictfeeds.R;
 import com.example.cictfeeds.models.Post;
 import com.example.cictfeeds.utils.AppRepository;
+import com.example.cictfeeds.utils.SessionManager;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -56,9 +57,15 @@ public class FeedFragment extends Fragment {
 
     private void initializeViews(View view){
         tvAddPost = view.findViewById(R.id.tvAddPost);
+        tvAddPost.setOnClickListener(v -> showPostForm());
+
+
+        if(SessionManager.getCurrentAdmin() == null){
+            tvAddPost.setVisibility(View.GONE);
+        }
+
         llPostsContainer =view.findViewById(R.id.llPostsContainer);
 
-        tvAddPost.setOnClickListener(v -> showPostForm());
     }
 
     private void handleDeletePost(String id){

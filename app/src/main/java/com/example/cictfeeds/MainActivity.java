@@ -1,6 +1,7 @@
 package com.example.cictfeeds;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.cictfeeds.utils.SessionManager;
 import com.example.cictfeeds.views.FeedFragment;
 import com.example.cictfeeds.views.HomeFragment;
 import com.example.cictfeeds.views.PostFragment;
@@ -75,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
         // Prevent duplicate fragment load
         if (currentFragment != null && currentFragment.getClass().getSimpleName().equals(tag)) {
             return;
+        }
+
+        if(SessionManager.getCurrentStudent()!=null){
+            btnPosts.setVisibility(View.GONE);
+            btnStudents.setVisibility(View.GONE);
         }
 
         FragmentTransaction transaction = fm.beginTransaction();

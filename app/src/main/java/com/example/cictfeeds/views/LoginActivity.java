@@ -113,6 +113,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else{
                     Helper.showSucccessSnackbar(findViewById(R.id.screen_login), "Logged In success for student");
+                    Intent intent = new Intent(loginContext, MainActivity.class);
+                    startActivity(intent);
                 }
             }
 

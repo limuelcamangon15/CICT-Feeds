@@ -2,6 +2,7 @@ package com.example.cictfeeds.views;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SwitchCompat;
@@ -26,7 +27,7 @@ import java.util.Calendar;
 
 public class ProfileFragment extends Fragment {
 
-    LinearLayout llUserDataContainer;
+    LinearLayout llUserDataContainer, llBdayGenderContainer;
     SwitchCompat scAllowEditProfile;
     Button btnLogout, btnSaveChanges;
 
@@ -40,6 +41,15 @@ public class ProfileFragment extends Fragment {
     EditText etSection;
     private String selectedYearLevel = "";
     private boolean isDatePickerShowing = false;
+    private String[] courses = {
+            "BS Information Technology",
+            "BS Information Systems",
+            "BL Information Science"
+    };
+
+    private String[] years = {"1st Year", "2nd Year", "3rd Year", "4th Year"};
+
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -49,7 +59,7 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initializeViews(view );
+        initializeViews(view);
         setupDropdowns();
         setupDatePicker();
         setSessionData();
@@ -64,6 +74,7 @@ public class ProfileFragment extends Fragment {
 
     private void initializeViews(View view) {
         llUserDataContainer = view.findViewById(R.id.llUserDataContainer);
+        llBdayGenderContainer = view.findViewById(R.id.llBdayGenderContainer);
         scAllowEditProfile = view.findViewById(R.id.scAllowEditProfile);
         btnSaveChanges = view.findViewById(R.id.btnSaveChanges);
         btnLogout = view.findViewById(R.id.btnLogout);
@@ -87,7 +98,12 @@ public class ProfileFragment extends Fragment {
         actvSpecialization = view.findViewById(R.id.actvSpecialization);
         etSection = view.findViewById(R.id.etSection);
 
+        if(SessionManager.getCurrentAdmin() != null){
+            llBdayGenderContainer.setVisibility(View.GONE);
+        }
+
         scAllowEditProfile.setOnClickListener(v -> handleAllowProfileEdit());
+        btnLogout.setOnClickListener(v -> handleLogout());
     }
 
     private void setupDropdowns() {
@@ -107,17 +123,13 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        String[] courses = {
-                "BS Information Technology",
-                "BS Information Systems",
-                "BL Information Science"
-        };
+
         ArrayAdapter<String> courseAdapter = new ArrayAdapter<>(
                 requireContext(), android.R.layout.simple_dropdown_item_1line, courses);
         actvCourse.setAdapter(courseAdapter);
         actvCourse.setOnClickListener(v -> actvCourse.showDropDown());
 
-        String[] years = {"1st Year", "2nd Year", "3rd Year", "4th Year"};
+
         ArrayAdapter<String> yearAdapter = new ArrayAdapter<>(
                 requireContext(), android.R.layout.simple_dropdown_item_1line, years);
         actvYearLevel.setAdapter(yearAdapter);
@@ -184,6 +196,8 @@ public class ProfileFragment extends Fragment {
                 year, month, day
         );
 
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
         datePickerDialog.setOnCancelListener(dialog -> isDatePickerShowing = false);
         datePickerDialog.setOnDismissListener(dialog -> isDatePickerShowing = false);
         datePickerDialog.show();
@@ -199,6 +213,12 @@ public class ProfileFragment extends Fragment {
             etPersonalFirstName.setEnabled(true);
             etPersonalLastName.setEnabled(true);
             etPersonalEmail.setEnabled(true);
+            etBirthday.setEnabled(true);
+            actvGender.setEnabled(true);
+            actvCourse.setEnabled(true);
+            actvYearLevel.setEnabled(true);
+            etSection.setEnabled(true);
+            actvSpecialization.setEnabled(true);
         }
         else{
             llUserDataContainer.setBackgroundColor(getResources().getColor(R.color.white));
@@ -207,18 +227,62 @@ public class ProfileFragment extends Fragment {
             etPersonalFirstName.setEnabled(false);
             etPersonalLastName.setEnabled(false);
             etPersonalEmail.setEnabled(false);
+            etBirthday.setEnabled(false);
+            actvGender.setEnabled(false);
+            actvCourse.setEnabled(false);
+            actvYearLevel.setEnabled(false);
+            etSection.setEnabled(false);
+            actvSpecialization.setEnabled(false);
         }
     }
 
     private void setSessionData(){
-        String firstName = SessionManager.getCurrentAdmin().getFirstName();
-        String lastName = SessionManager.getCurrentAdmin().getLastName();
-        String email = SessionManager.getCurrentAdmin().getEmail();
+
+        String firstName = "";
+        String lastName = "";
+        String email = "";
+        String bday = "";
+        String course = "";
+
+
+        if(SessionManager.getCurrentAdmin() != null){
+            firstName = SessionManager.getCurrentAdmin().getFirstName();
+            lastName = SessionManager.getCurrentAdmin().getLastName();
+            email = SessionManager.getCurrentAdmin().getEmail();
+        }else{
+            firstName = SessionManager.getCurrentStudent().getFirstname();
+            lastName = SessionManager.getCurrentStudent().getLastname();
+            email = SessionManager.getCurrentStudent().getEmail();
+            bday = SessionManager.getCurrentStudent().getBirthday();
+            course = SessionManager.getCurrentStudent().getCourse();
+
+
+            etBirthday.setText(bday);
+            actvCourse.setText(course, false);
+            actvYearLevel.setText(years[SessionManager.getCurrentStudent().getYear() - 1],false);
+        }
 
         tvProfileName.setText(firstName+" "+lastName);
         tvProfileEmail.setText(email);
         etPersonalFirstName.setText(firstName);
         etPersonalLastName.setText(lastName);
         etPersonalEmail.setText(email);
+
     }
+
+    private void handleLogout(){
+
+        SessionManager.logoutAll();
+        Intent intent = new Intent(requireContext(), LoginActivity.class);
+        startActivity(intent);
+
+    }
+
+    private void handleSaveChanges(){
+        //handle all changing stuff
+    }
+
+
+
+
 }
