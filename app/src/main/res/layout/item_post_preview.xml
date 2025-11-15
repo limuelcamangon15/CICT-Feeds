@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp"
+        android:gravity="center"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/custom_border">
+
+    <TextView
+        android:id="@+id/tvTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tech and Innovation"
+        android:textSize="11sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/orange"/>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CICT Hackathon 2025"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_bold"/>
+
+    <TextView
+        android:id="@+id/tvExtraDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Oct 21 | Valencia Hall"
+        android:textSize="11sp"
+        android:layout_marginBottom="5dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/gray"/>
+
+    <Button
+        style="@style/CustomPrimaryButton"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textSize="11sp"
+        android:text="View Details" />
+
+</LinearLayout>

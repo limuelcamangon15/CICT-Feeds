@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="6dp"
+    app:cardCornerRadius="8dp"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="#FBF2E4">
+
+    <LinearLayout
+        android:id="@+id/llPostContainer"
+        android:background="@drawable/custom_border"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tvPostTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SWITS MERCH: The Arcana's Relics"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/orange"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvPostEventDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/lightGray700"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_regular"/>
+
+            <TextView
+                android:id="@+id/tvSpacer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="|"
+                android:textColor="@color/lightGray700"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:id="@+id/tvPostTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/lightGray700"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_regular"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:drawableLeft="@drawable/icon_small_location"
+            android:textSize="12sp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/tvContentBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="𝐃𝐨𝐧’𝐭 𝐦𝐢𝐬𝐬 𝐨𝐮𝐭, 𝐦𝐠𝐚 𝐤𝐚-𝐒𝐖𝐈𝐓𝐒 — the 𝐀𝐫𝐜𝐚𝐧𝐚’𝐬 𝐑𝐞𝐥𝐢𝐜𝐬 are calling!
+Pre-orders are open from 𝐎𝐜𝐭𝐨𝐛𝐞𝐫 𝟐𝟕 𝐭𝐨 𝐍𝐨𝐯𝐞𝐦𝐛𝐞𝐫 𝟏𝟒, 𝟐𝟎𝟐𝟓, calling all Technomancers to claim their relics and wear the mark of creativity and pride.
+𝐓𝐡𝐞 𝐟𝐢𝐫𝐬𝐭 𝟏𝟎𝟎 𝐦𝐞𝐦𝐛𝐞𝐫𝐬 𝐭𝐨 𝐩𝐫𝐞-𝐨𝐫𝐝𝐞𝐫 𝐰𝐢𝐥𝐥 𝐫𝐞𝐜𝐞𝐢𝐯𝐞 ₱𝟓𝟎 𝐨𝐟𝐟 𝐭𝐡𝐞𝐢𝐫 𝐭𝐨𝐭𝐚𝐥 𝐩𝐮𝐫𝐜𝐡𝐚𝐬𝐞! (₱𝟑𝟐𝟕)
+𝘍𝘰𝘭𝘭𝘰𝘸 𝘵𝘩𝘦 𝘨𝘶𝘪𝘥𝘦𝘭𝘪𝘯𝘦𝘴 𝘢𝘯𝘥 𝘱𝘳𝘦-𝘰𝘳𝘥𝘦𝘳 𝘧𝘰𝘳𝘮 𝘵𝘩𝘳𝘰𝘶𝘨𝘩 𝘵𝘩𝘦 𝘱𝘳𝘰𝘷𝘪𝘥𝘦𝘥 𝘭𝘪𝘯𝘬.
+https://tinyurl.com/SWITSMerchGuidelines
+https://tinyurl.com/SWITSMerchGuidelines
+https://tinyurl.com/SWITSMerchGuidelines"
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            android:textColorLink="@color/orange"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:textIsSelectable="true"
+            android:breakStrategy="simple"
+            android:lineSpacingExtra="2dp"
+            android:padding="4dp" />
+
+
+    <!-- Image Scroll -->
+    <HorizontalScrollView
+        android:id="@+id/hsImagesScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:id="@+id/llPostImages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp" />
+    </HorizontalScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/lightGray100"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl">
+
+
+            <TextView
+                android:id="@+id/tvLikeCount"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="150"
+                android:textSize="14sp"
+                android:paddingLeft="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
+
+            <ImageButton
+                android:id="@+id/ibLike"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/icon_heart_outlined"
+                android:layout_gravity="center"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="8"/>
+
+            <ImageButton
+                android:id="@+id/ibUpdate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="12dp"
+                android:backgroundTint="@color/white"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/icon_update"
+                android:tint="@color/green"
+                />
+
+            <ImageButton
+                android:id="@+id/ibDelete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/icon_delete"
+                android:tint="@color/red"
+                />
+
+        </LinearLayout>
+
+</LinearLayout>
+    </androidx.cardview.widget.CardView>

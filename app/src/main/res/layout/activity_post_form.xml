@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/screen_create_post"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true"
+    tools:context=".views.PostFormActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/ibBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/white"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/icon_back"
+                    android:tint="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Create Post"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:fontFamily="@font/poppins_medium"/>
+
+            </LinearLayout>
+
+            <!-- Post Button -->
+            <Button
+                android:id="@+id/btnSavePost"
+                style="@style/CustomPrimaryButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Post"/>
+        </LinearLayout>
+
+
+
+        <!-- Post Title -->
+        <EditText
+            android:id="@+id/etPostTitle"
+            style="@style/CustomEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title"
+            android:inputType="text"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Date (optional, can open a date picker) -->
+            <EditText
+                android:id="@+id/etPostEventDate"
+                style="@style/CustomEditText"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:hint="When?"
+                android:drawableRight="@drawable/icon_calendar"
+                android:drawablePadding="5dp"
+                android:focusable="false"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:inputType="none"
+                android:layout_marginBottom="12dp"
+                android:layout_marginRight="10dp"/>
+
+            <!-- Tag -->
+            <AutoCompleteTextView
+                android:id="@+id/actvTag"
+                style="@style/CustomAutoCompleteTextView"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:hint="What type?"
+                android:drawableRight="@drawable/icon_dropdown"
+                android:drawablePadding="5dp"
+                android:focusable="false"
+                android:cursorVisible="false"/>
+
+        </LinearLayout>
+
+        <!-- Location -->
+        <EditText
+            android:id="@+id/etPostLocation"
+            style="@style/CustomEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Please tell me where?"
+            android:inputType="text"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Post Body -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPostBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPostBody"
+                android:background="@drawable/custom_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="What do you want to share?"
+                android:textColorHint="@color/lightGray100"
+                android:inputType="textMultiLine|textCapSentences"
+                android:padding="15dp"
+                android:textSize="14sp"
+                android:gravity="top|start"
+                android:minLines="5"
+                android:maxLines="20"
+                android:scrollbars="vertical"
+                android:overScrollMode="always"
+                android:textColor="@color/black"
+                android:scrollHorizontally="false" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- Image URIs (can be implemented with a button to select images) -->
+        <Button
+            android:id="@+id/btnAddImages"
+            android:background="@drawable/custom_edit_text"
+            android:backgroundTint="@color/lightGray50"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Select images to upload"
+            android:textSize="14dp"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Image Preview -->
+        <HorizontalScrollView
+            android:id="@+id/hsImagePreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:id="@+id/llSelectedImages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4dp" />
+        </HorizontalScrollView>
+
+
+    </LinearLayout>
+</ScrollView>

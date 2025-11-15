@@ -11,14 +11,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CICTFeeds">
-
         <activity
-            android:name=".SignupActivity"
+            android:name=".views.PostFormUpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.PostFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.FeedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.SignupActivity"
             android:exported="false"
-            android:theme="@style/Theme.CICTFeeds"/>
-
+            android:theme="@style/Theme.CICTFeeds" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".views.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

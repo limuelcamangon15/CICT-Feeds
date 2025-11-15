@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/screen_feed"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.FeedFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingLeft="10dp"
+            android:text="All Posts"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <!-- Quick Actions Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <!-- Post Button and Filter -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Quick Actions"
+                    android:textColor="@color/black" />
+
+
+                <EditText
+                    android:id="@+id/etFilterByDate"
+                    style="@style/CustomEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1.5"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:drawableLeft="@drawable/icon_calendar"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="@color/orange"
+                    android:focusable="false"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="2dp"
+                    android:inputType="none"
+                    android:text="Filter Posts by Date"
+                    android:textAllCaps="false"
+                    android:textColor="@color/orange" />
+
+            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvAddPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:background="@drawable/custom_edit_text"
+                    android:backgroundTint="@color/lightGray700"
+                    android:padding="10dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:text="Want to share something new?" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/orange"/>
+
+        </LinearLayout>
+
+        <!-- Feed Scroll View -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsScrollFeed"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:clipToPadding="false"
+            android:paddingBottom="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+
+            <!-- Posts -->
+            <LinearLayout
+                android:id="@+id/llPostsContainer"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+
+</LinearLayout>

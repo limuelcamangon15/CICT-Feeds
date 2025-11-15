@@ -1,6 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme using Material3 -->
     <style name="Base.Theme.CICTFeeds" parent="Theme.AppCompat.DayNight.NoActionBar">
 
         <item name="buttonStyle">@style/CustomPrimaryButton</item>
