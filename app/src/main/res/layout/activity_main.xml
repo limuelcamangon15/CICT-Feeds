@@ -99,7 +99,7 @@
             android:layout_height="32dp"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/icon_level" />
+            android:src="@drawable/selector_icon_posts" />
 
         <ImageButton
             android:id="@+id/btnProfile"
