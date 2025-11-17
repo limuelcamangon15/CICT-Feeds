@@ -31,6 +31,7 @@ import com.example.cictfeeds.MainActivity;
 import com.example.cictfeeds.R;
 import com.example.cictfeeds.controllers.SignupController;
 import com.example.cictfeeds.models.Student;
+import com.example.cictfeeds.utils.Helper;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SignupActivity extends AppCompatActivity {
@@ -73,9 +74,9 @@ public class SignupActivity extends AppCompatActivity {
         signupController = new SignupController();
 
         String[] courses = {
-                "BS Information Technology",
-                "BS Information Systems",
-                "BL Information Science"
+                "BSIT",
+                "BSIS",
+                "BLIS"
         };
 
         String[] years = {
@@ -197,18 +198,12 @@ public class SignupActivity extends AppCompatActivity {
             public void onSuccess(Object s) {
                 Student student = (Student) s;
 
-                new AlertDialog.Builder(signupContext)
-                        .setTitle("Registered Successfully!")
-                        .setMessage(
-                                "ID: " + student.getStudentId() + "\n"
-                                        + "Name: " + student.getFirstname() + " " + student.getLastname() + "\n"
-                                        + "Course: " + student.getCourse() + "\n"
-                                        + "Year: " + student.getYear() + "\n"
-                                        + "Email: " + student.getEmail() + "\n"
-                                        + "Password: " + student.getPassword()
-                        )
-                        .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
-                        .show();
+                Helper.showSucccessSnackbar(findViewById(R.id.screen_signup), "Successful Registration!");
+
+                new android.os.Handler().postDelayed(() -> {
+                    Intent intent = new Intent(signupContext, LoginActivity.class);
+                    startActivity(intent);
+                }, 1000);
             }
 
             @Override

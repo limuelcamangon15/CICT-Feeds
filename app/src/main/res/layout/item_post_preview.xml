@@ -49,6 +49,7 @@
 
     <Button
         style="@style/CustomPrimaryButton"
+        android:id="@+id/btnViewDetails"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:textSize="11sp"

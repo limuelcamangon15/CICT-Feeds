@@ -1,6 +1,8 @@
 package com.example.cictfeeds.models;
 
-public class Student{
+import java.util.ArrayList;
+
+public class Student {
     private String studentId;
     private String firstname;
     private String lastname;
@@ -12,9 +14,10 @@ public class Student{
     private String birthday;
     private String gender;
     private String specialization;
+    private ArrayList<String> likedPostById;
 
     public Student(String studentId, String firstname, String lastname, String course, int year, String section,
-                   String email, String password, String birthday, String gender, String specialization) {
+                   String email, String password, String birthday, String gender, String specialization, ArrayList<String> likedPostById) {
         this.studentId = studentId;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -26,6 +29,7 @@ public class Student{
         this.birthday = birthday;
         this.gender = gender;
         this.specialization = specialization;
+        this.likedPostById = likedPostById;
     }
 
     public Student(String studentId, String firstname, String lastname, String email, String password, String course, int year) {
@@ -40,7 +44,7 @@ public class Student{
 
     public Student(String firstname, String lastname, String course, int year,
                    String email, String password) {
-        this(null, firstname,lastname, course, year,null, email, password, null,null,null);
+        this(null, firstname, lastname, course, year, null, email, password, null, null, null, null);
     }
 
     //getters and setters
@@ -131,5 +135,18 @@ public class Student{
 
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
+    }
+
+    public void addLikedPost(String postId) {
+        if (likedPostById == null) likedPostById = new ArrayList<>();
+        if (!likedPostById.contains(postId)) likedPostById.add(postId);
+    }
+
+    public void removeLikedPost(String postId) {
+        if (likedPostById != null) likedPostById.remove(postId);
+    }
+
+    public boolean hasLikedPost(String postId) {
+        return likedPostById != null && likedPostById.contains(postId);
     }
 }

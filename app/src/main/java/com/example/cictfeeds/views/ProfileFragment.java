@@ -3,11 +3,18 @@ package com.example.cictfeeds.views;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +22,18 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cictfeeds.R;
 import com.example.cictfeeds.models.Admin;
+import com.example.cictfeeds.models.Student;
+import com.example.cictfeeds.utils.AppRepository;
+import com.example.cictfeeds.utils.Helper;
 import com.example.cictfeeds.utils.SessionManager;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
 
@@ -42,12 +54,20 @@ public class ProfileFragment extends Fragment {
     private String selectedYearLevel = "";
     private boolean isDatePickerShowing = false;
     private String[] courses = {
-            "BS Information Technology",
-            "BS Information Systems",
-            "BL Information Science"
+            "BSIT",
+            "BSIS",
+            "BLIS"
     };
 
     private String[] years = {"1st Year", "2nd Year", "3rd Year", "4th Year"};
+    private String firstName = "";
+    private String lastName = "";
+    private String email = "";
+    private String bday = "";
+    private String course = "";
+    private String section = "";
+    private String specialization = "";
+
 
 
 
@@ -104,6 +124,7 @@ public class ProfileFragment extends Fragment {
 
         scAllowEditProfile.setOnClickListener(v -> handleAllowProfileEdit());
         btnLogout.setOnClickListener(v -> handleLogout());
+        btnSaveChanges.setOnClickListener(v -> handleSaveChanges());
     }
 
     private void setupDropdowns() {
@@ -238,28 +259,31 @@ public class ProfileFragment extends Fragment {
 
     private void setSessionData(){
 
-        String firstName = "";
-        String lastName = "";
-        String email = "";
-        String bday = "";
-        String course = "";
+        Student currentStudent = SessionManager.getCurrentStudent();
+        Admin currentAdmin = SessionManager.getCurrentAdmin();
 
-
-        if(SessionManager.getCurrentAdmin() != null){
-            firstName = SessionManager.getCurrentAdmin().getFirstName();
-            lastName = SessionManager.getCurrentAdmin().getLastName();
-            email = SessionManager.getCurrentAdmin().getEmail();
-        }else{
-            firstName = SessionManager.getCurrentStudent().getFirstname();
-            lastName = SessionManager.getCurrentStudent().getLastname();
-            email = SessionManager.getCurrentStudent().getEmail();
-            bday = SessionManager.getCurrentStudent().getBirthday();
-            course = SessionManager.getCurrentStudent().getCourse();
-
-
+        if(currentAdmin != null){
+            firstName = currentAdmin.getFirstName();
+            lastName = currentAdmin.getLastName();
+            email = currentAdmin.getEmail();
+            course = currentAdmin.getCourse();
+            specialization = currentAdmin.getSpecialization();
+            section = currentAdmin.getSection();
+            actvYearLevel.setText(currentAdmin.getYearLevel(),false);
+            actvSpecialization.setText(currentAdmin.getSpecialization(), false);
+        }else if(currentStudent != null){
+            firstName = currentStudent.getFirstname();
+            lastName = currentStudent.getLastname();
+            email = currentStudent.getEmail();
+            bday = currentStudent.getBirthday();
+            course = currentStudent.getCourse();
+            specialization = currentStudent.getSpecialization();
+            section = currentStudent.getSection();
             etBirthday.setText(bday);
-            actvCourse.setText(course, false);
-            actvYearLevel.setText(years[SessionManager.getCurrentStudent().getYear() - 1],false);
+            actvYearLevel.setText(years[currentStudent.getYear() - 1],false);
+            if(years[currentStudent.getYear() - 1 ].equals("3rd Year") || years[currentStudent.getYear() - 1].equals("4th Year")
+            && specialization != null){actvSpecialization.setText(specialization, false);}
+
         }
 
         tvProfileName.setText(firstName+" "+lastName);
@@ -267,6 +291,10 @@ public class ProfileFragment extends Fragment {
         etPersonalFirstName.setText(firstName);
         etPersonalLastName.setText(lastName);
         etPersonalEmail.setText(email);
+        actvCourse.setText(course, false);
+
+        etSection.setText(section);
+
 
     }
 
@@ -280,6 +308,84 @@ public class ProfileFragment extends Fragment {
 
     private void handleSaveChanges(){
         //handle all changing stuff
+        Student currentStudent = SessionManager.getCurrentStudent();
+        Admin currentAdmin = SessionManager.getCurrentAdmin();
+        if(currentStudent != null){
+
+            currentStudent.setLastname(etPersonalLastName.getText().toString());
+            currentStudent.setFirstname(etPersonalFirstName.getText().toString());
+            currentStudent.setEmail(etPersonalEmail.getText().toString());
+            currentStudent.setBirthday(etPersonalFirstName.getText().toString());
+            currentStudent.setCourse(actvCourse.getText().toString());
+            currentStudent.setSpecialization(actvSpecialization.getText().toString());
+            currentStudent.setSection(etSection.getText().toString());
+
+            if(actvGender.getText().toString().equals("Male") ||
+                    actvGender.getText().toString().equals("Female")){
+                currentStudent.setGender(actvGender.getText().toString());
+            }else{
+                currentStudent.setGender(etGenderOthers.getText().toString());
+            }
+
+            for(int i = 0; i < years.length; i++){
+                currentStudent.setYear(i + 1);
+            }
+
+            AppRepository.updateStudent(currentStudent);
+
+            showSuccessSnackbar("Profile Updated Successfully!");
+
+        }else if(currentAdmin != null){
+
+            currentAdmin.setFirstName(etPersonalFirstName.getText().toString());
+            currentAdmin.setLastName(etPersonalLastName.getText().toString());
+            currentAdmin.setEmail(etPersonalEmail.getText().toString());
+            currentAdmin.setCourse(actvCourse.getText().toString());
+            currentAdmin.setSpecialization(actvSpecialization.getText().toString());
+            currentAdmin.setYearLevel(actvYearLevel.getText().toString());
+            currentAdmin.setSection(etSection.getText().toString());
+
+            showSuccessSnackbar("Profile Updated Successfully!");
+        }
+
+
+    }
+
+    private void showSuccessSnackbar(String message) {
+
+        Snackbar snackbar = Snackbar.make(requireView(), "", Snackbar.LENGTH_LONG);
+        View snackbarView = snackbar.getView();
+
+
+        GradientDrawable background = new GradientDrawable();
+        background.setColor(getResources().getColor(R.color.green)); // green for success
+        background.setCornerRadius(20);
+        snackbarView.setBackground(background);
+
+
+        TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+        textView.setTextColor(getResources().getColor(android.R.color.white));
+        textView.setTextSize(16);
+        textView.setMaxLines(5);
+        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+
+        Drawable icon = getResources().getDrawable(R.drawable.icon_success);
+        icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
+
+        SpannableString spannable = new SpannableString("       " + message);
+        ImageSpan imageSpan = new ImageSpan(icon, ImageSpan.ALIGN_CENTER);
+        spannable.setSpan(imageSpan, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+
+        textView.setText(spannable);
+
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) snackbarView.getLayoutParams();
+        params.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+        params.setMargins(32, 32, 32, 170);
+        snackbarView.setLayoutParams(params);
+
+        // Show it
+        snackbar.show();
     }
 
 
