@@ -178,7 +178,7 @@ public class ProfileFragment extends Fragment {
             actvSpecialization.setHint("No Specialization");
         } else {
             specializations = new String[]{
-                    "Web and Mobile Development",
+                    "Web and Mobile Applications Development",
                     "Data and Business Analytics",
                     "Infrastructure Services"
             };
@@ -271,7 +271,8 @@ public class ProfileFragment extends Fragment {
             section = currentAdmin.getSection();
             actvYearLevel.setText(currentAdmin.getYearLevel(),false);
             actvSpecialization.setText(currentAdmin.getSpecialization(), false);
-        }else if(currentStudent != null){
+        }
+        else if(currentStudent != null){
             firstName = currentStudent.getFirstname();
             lastName = currentStudent.getLastname();
             email = currentStudent.getEmail();
@@ -281,8 +282,11 @@ public class ProfileFragment extends Fragment {
             section = currentStudent.getSection();
             etBirthday.setText(bday);
             actvYearLevel.setText(years[currentStudent.getYear() - 1],false);
+
             if(years[currentStudent.getYear() - 1 ].equals("3rd Year") || years[currentStudent.getYear() - 1].equals("4th Year")
-            && specialization != null){actvSpecialization.setText(specialization, false);}
+            && specialization != null){
+                actvSpecialization.setText(specialization, false);
+            }
 
         }
 
@@ -328,8 +332,11 @@ public class ProfileFragment extends Fragment {
             }
 
             for(int i = 0; i < years.length; i++){
-                currentStudent.setYear(i + 1);
+                if(years[i].equals(actvYearLevel.getText().toString())){
+                    currentStudent.setYear(i + 1);
+                }
             }
+
 
             AppRepository.updateStudent(currentStudent);
 
