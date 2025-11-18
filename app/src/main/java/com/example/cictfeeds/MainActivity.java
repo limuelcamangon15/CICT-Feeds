@@ -1,6 +1,7 @@
 package com.example.cictfeeds;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.cictfeeds.utils.SessionManager;
 import com.example.cictfeeds.views.FeedFragment;
 import com.example.cictfeeds.views.HomeFragment;
 import com.example.cictfeeds.views.PostFragment;
@@ -42,32 +44,49 @@ public class MainActivity extends AppCompatActivity {
         btnProfile = findViewById(R.id.btnProfile);
 
         if (savedInstanceState == null) {
-            loadFragment(new HomeFragment(), false);
-            setActiveButton(btnHome);
+
+            if(SessionManager.getCurrentAdmin() != null){
+                loadFragment(new FeedFragment(), null,false);
+                setActiveButton(btnFeeds);
+            }else if(SessionManager.getCurrentStudent() != null){
+                loadFragment(new HomeFragment(), null,false);
+                setActiveButton(btnHome);
+            }
+
+        }
+
+        if(SessionManager.getCurrentStudent() != null){
+            btnPosts.setVisibility(View.GONE);
+            btnStudents.setVisibility(View.GONE);
+        }else{
+            btnHome.setVisibility(View.GONE);
         }
 
         btnHome.setOnClickListener(v -> {
-            loadFragment(new HomeFragment(), true);
+            loadFragment(new HomeFragment(), null,true);
             setActiveButton(btnHome);
         });
         btnFeeds.setOnClickListener(v -> {
-            loadFragment(new FeedFragment(), true);
+            loadFragment(new FeedFragment(), null,true);
             setActiveButton(btnFeeds);
         });
         btnStudents.setOnClickListener(v -> {
-            loadFragment(new StudentsFragment(), true);
+            loadFragment(new StudentsFragment(), null,true);
             setActiveButton(btnStudents);
         });
-        btnPosts.setOnClickListener(v -> loadFragment(new PostFragment(), true));
+        btnPosts.setOnClickListener(v -> {
+            loadFragment(new PostFragment(),null, true);
+            setActiveButton(btnPosts);
+        });
         btnProfile.setOnClickListener(v -> {
-            loadFragment(new ProfileFragment(), true);
+            loadFragment(new ProfileFragment(), null,true);
             setActiveButton(btnProfile);
         });
     }
 
     private boolean isFirstFragmentLoaded = false;
 
-    private void loadFragment(Fragment fragment, boolean addToBackStack) {
+    private void loadFragment(Fragment fragment, Bundle args, boolean addToBackStack) {
         FragmentManager fm = getSupportFragmentManager();
         Fragment currentFragment = fm.findFragmentById(R.id.fragmentContainer);
         String tag = fragment.getClass().getSimpleName();
@@ -76,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
         if (currentFragment != null && currentFragment.getClass().getSimpleName().equals(tag)) {
             return;
         }
+
+        if (args != null) fragment.setArguments(args);
 
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.setCustomAnimations(
@@ -114,6 +135,11 @@ public class MainActivity extends AppCompatActivity {
         btnProfile.setSelected(false);
 
         activeButton.setSelected(true);
+    }
+
+    public void navigateToSingleFeedPost(Fragment fragment, Bundle args, boolean addToBackStack){
+        loadFragment(fragment, args, addToBackStack);
+        setActiveButton(btnFeeds);
     }
 
 }

@@ -42,30 +42,25 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_gravity="center"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Quick Actions"
-                    android:textColor="@color/black" />
+                    android:text="Filter By Tags: "
+                    android:textColor="@color/black"
+                    android:textAlignment="textEnd"
+                    android:layout_marginRight="10dp"
+                    />
 
 
-                <EditText
-                    android:id="@+id/etFilterByDate"
-                    style="@style/CustomEditText"
+                <AutoCompleteTextView
+                    android:id="@+id/actvFilterTag"
+                    style="@style/CustomAutoCompleteTextView"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1.5"
-                    android:clickable="true"
-                    android:cursorVisible="false"
-                    android:drawableLeft="@drawable/icon_calendar"
-                    android:drawablePadding="10dp"
-                    android:drawableTint="@color/orange"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:hint="What type?"
+                    android:drawableRight="@drawable/icon_dropdown"
+                    android:drawablePadding="5dp"
                     android:focusable="false"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="2dp"
-                    android:inputType="none"
-                    android:text="Filter Posts by Date"
-                    android:textAllCaps="false"
-                    android:textColor="@color/orange" />
+                    android:cursorVisible="false"/>
 
             </LinearLayout>
 
