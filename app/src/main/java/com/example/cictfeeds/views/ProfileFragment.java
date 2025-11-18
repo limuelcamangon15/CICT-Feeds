@@ -39,7 +39,7 @@ import java.util.Calendar;
 
 public class ProfileFragment extends Fragment {
 
-    LinearLayout llUserDataContainer, llBdayGenderContainer;
+    LinearLayout llUserDataContainer, llBdayGenderContainer, llAcademicInformation;
     SwitchCompat scAllowEditProfile;
     Button btnLogout, btnSaveChanges;
 
@@ -67,13 +67,11 @@ public class ProfileFragment extends Fragment {
     private String course = "";
     private String section = "";
     private String specialization = "";
+    private String gender = "";
 
 
 
-
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
+    public ProfileFragment() {}
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -83,28 +81,29 @@ public class ProfileFragment extends Fragment {
         setupDropdowns();
         setupDatePicker();
         setSessionData();
+        handleAllowProfileEdit();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
     private void initializeViews(View view) {
         llUserDataContainer = view.findViewById(R.id.llUserDataContainer);
         llBdayGenderContainer = view.findViewById(R.id.llBdayGenderContainer);
+        llAcademicInformation = view.findViewById(R.id.llAcademicInformation);
         scAllowEditProfile = view.findViewById(R.id.scAllowEditProfile);
         btnSaveChanges = view.findViewById(R.id.btnSaveChanges);
         btnLogout = view.findViewById(R.id.btnLogout);
 
-        // Profile Info
+        //Profile Info
         tvProfileName = view.findViewById(R.id.tvProfileName);
         tvProfileEmail = view.findViewById(R.id.tvProfileEmail);
         ivProfilePicture = view.findViewById(R.id.ivProfilePicture);
 
-        // Personal Info
+        //Personal Info
         etPersonalFirstName = view.findViewById(R.id.etPersonalFirstName);
         etPersonalLastName = view.findViewById(R.id.etPersonalLastName);
         etPersonalEmail = view.findViewById(R.id.etPersonalEmail);
@@ -112,7 +111,7 @@ public class ProfileFragment extends Fragment {
         etGenderOthers = view.findViewById(R.id.etGenderOthers);
         actvGender = view.findViewById(R.id.actvGender);
 
-        // Academic Info
+        //Academic Info
         actvCourse = view.findViewById(R.id.actvCourse);
         actvYearLevel = view.findViewById(R.id.actvYearLevel);
         actvSpecialization = view.findViewById(R.id.actvSpecialization);
@@ -120,6 +119,7 @@ public class ProfileFragment extends Fragment {
 
         if(SessionManager.getCurrentAdmin() != null){
             llBdayGenderContainer.setVisibility(View.GONE);
+            llAcademicInformation.setVisibility(View.GONE);
         }
 
         scAllowEditProfile.setOnClickListener(v -> handleAllowProfileEdit());
@@ -139,7 +139,8 @@ public class ProfileFragment extends Fragment {
             String selected = genders[position];
             if (selected.equals("Others")) {
                 etGenderOthers.setVisibility(View.VISIBLE);
-            } else {
+            }
+            else {
                 etGenderOthers.setVisibility(View.GONE);
             }
         });
@@ -172,17 +173,21 @@ public class ProfileFragment extends Fragment {
         String[] specializations;
 
         if (yearLevel.equals("1st Year") || yearLevel.equals("2nd Year")) {
-            specializations = new String[]{"No Specialization Yet"};
+            specializations = new String[]{"No Specialization"};
             actvSpecialization.setEnabled(false);
+            actvSpecialization.setFocusable(false);
             actvSpecialization.setText("");
             actvSpecialization.setHint("No Specialization");
-        } else {
+        }
+        else {
             specializations = new String[]{
                     "Web and Mobile Applications Development",
                     "Data and Business Analytics",
                     "Infrastructure Services"
             };
             actvSpecialization.setEnabled(true);
+            actvSpecialization.setFocusable(true);
+            actvSpecialization.setHint("Select Specialization");
         }
 
         ArrayAdapter<String> specializationAdapter = new ArrayAdapter<>(
@@ -240,6 +245,12 @@ public class ProfileFragment extends Fragment {
             actvYearLevel.setEnabled(true);
             etSection.setEnabled(true);
             actvSpecialization.setEnabled(true);
+            actvSpecialization.setFocusable(true);
+            actvSpecialization.setOnClickListener(v -> {
+                if (actvSpecialization.isEnabled()) {
+                    actvSpecialization.showDropDown();
+                }
+            });
         }
         else{
             llUserDataContainer.setBackgroundColor(getResources().getColor(R.color.white));
@@ -254,11 +265,12 @@ public class ProfileFragment extends Fragment {
             actvYearLevel.setEnabled(false);
             etSection.setEnabled(false);
             actvSpecialization.setEnabled(false);
+            actvSpecialization.setFocusable(false);
+            actvSpecialization.setOnClickListener(null);
         }
     }
 
     private void setSessionData(){
-
         Student currentStudent = SessionManager.getCurrentStudent();
         Admin currentAdmin = SessionManager.getCurrentAdmin();
 
@@ -277,14 +289,19 @@ public class ProfileFragment extends Fragment {
             lastName = currentStudent.getLastname();
             email = currentStudent.getEmail();
             bday = currentStudent.getBirthday();
+            gender = currentStudent.getGender();
             course = currentStudent.getCourse();
             specialization = currentStudent.getSpecialization();
             section = currentStudent.getSection();
             etBirthday.setText(bday);
-            actvYearLevel.setText(years[currentStudent.getYear() - 1],false);
 
-            if(years[currentStudent.getYear() - 1 ].equals("3rd Year") || years[currentStudent.getYear() - 1].equals("4th Year")
-            && specialization != null){
+            String studentYearLevel = years[currentStudent.getYear() - 1];
+
+            actvYearLevel.setText(studentYearLevel, false);
+
+            updateSpecializationDropdown(studentYearLevel);
+
+            if (specialization != null) {
                 actvSpecialization.setText(specialization, false);
             }
 
@@ -296,6 +313,7 @@ public class ProfileFragment extends Fragment {
         etPersonalLastName.setText(lastName);
         etPersonalEmail.setText(email);
         actvCourse.setText(course, false);
+        actvGender.setText(gender,false);
 
         etSection.setText(section);
 
@@ -314,20 +332,47 @@ public class ProfileFragment extends Fragment {
         //handle all changing stuff
         Student currentStudent = SessionManager.getCurrentStudent();
         Admin currentAdmin = SessionManager.getCurrentAdmin();
-        if(currentStudent != null){
 
-            currentStudent.setLastname(etPersonalLastName.getText().toString());
-            currentStudent.setFirstname(etPersonalFirstName.getText().toString());
-            currentStudent.setEmail(etPersonalEmail.getText().toString());
+        String newLastName = etPersonalLastName.getText().toString();
+        String newFirstName= etPersonalFirstName.getText().toString();
+        String newEmail =etPersonalEmail.getText().toString();
+
+        if(newFirstName.isEmpty()){
+            Helper.showErrorSnackbar(requireView(),"First Name cannot be empty");
+            return;
+        }
+
+        if(newLastName.isEmpty()){
+            Helper.showErrorSnackbar(requireView(),"Last Name cannot be empty");
+            return;
+        }
+
+        if(newEmail.isEmpty()){
+            Helper.showErrorSnackbar(requireView(),"Email cannot be empty");
+            return;
+        }
+
+
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+
+        if (!newEmail.matches(emailRegex)) {
+            Helper.showErrorSnackbar(requireView(),"Please enter a valid email address");
+            return;
+        }
+
+        if(currentStudent != null){
+            currentStudent.setLastname(newLastName);
+            currentStudent.setFirstname(newFirstName);
+            currentStudent.setEmail(newEmail);
             currentStudent.setBirthday(etBirthday.getText().toString());
             currentStudent.setCourse(actvCourse.getText().toString());
             currentStudent.setSpecialization(actvSpecialization.getText().toString());
             currentStudent.setSection(etSection.getText().toString());
 
-            if(actvGender.getText().toString().equals("Male") ||
-                    actvGender.getText().toString().equals("Female")){
+            if(actvGender.getText().toString().equals("Male") || actvGender.getText().toString().equals("Female")){
                 currentStudent.setGender(actvGender.getText().toString());
-            }else{
+            }
+            else{
                 currentStudent.setGender(etGenderOthers.getText().toString());
             }
 
@@ -340,7 +385,9 @@ public class ProfileFragment extends Fragment {
 
             AppRepository.updateStudent(currentStudent);
 
-            showSuccessSnackbar("Profile Updated Successfully!");
+
+            actvGender.setText(actvGender.getText().toString(),false);
+
 
         }else if(currentAdmin != null){
 
@@ -352,48 +399,16 @@ public class ProfileFragment extends Fragment {
             currentAdmin.setYearLevel(actvYearLevel.getText().toString());
             currentAdmin.setSection(etSection.getText().toString());
 
-            showSuccessSnackbar("Profile Updated Successfully!");
         }
 
+        Helper.showSucccessSnackbar(requireView(),"Profile Updated Successfully!");
+        scAllowEditProfile.setChecked(false);
+        tvProfileName.setText(newFirstName+" "+newLastName);
+        tvProfileEmail.setText(newEmail);
 
+        handleAllowProfileEdit();
     }
 
-    private void showSuccessSnackbar(String message) {
-
-        Snackbar snackbar = Snackbar.make(requireView(), "", Snackbar.LENGTH_LONG);
-        View snackbarView = snackbar.getView();
-
-
-        GradientDrawable background = new GradientDrawable();
-        background.setColor(getResources().getColor(R.color.green)); // green for success
-        background.setCornerRadius(20);
-        snackbarView.setBackground(background);
-
-
-        TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
-        textView.setTextColor(getResources().getColor(android.R.color.white));
-        textView.setTextSize(16);
-        textView.setMaxLines(5);
-        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-
-
-        Drawable icon = getResources().getDrawable(R.drawable.icon_success);
-        icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
-
-        SpannableString spannable = new SpannableString("       " + message);
-        ImageSpan imageSpan = new ImageSpan(icon, ImageSpan.ALIGN_CENTER);
-        spannable.setSpan(imageSpan, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-
-        textView.setText(spannable);
-
-        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) snackbarView.getLayoutParams();
-        params.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
-        params.setMargins(32, 32, 32, 170);
-        snackbarView.setLayoutParams(params);
-
-        // Show it
-        snackbar.show();
-    }
 
 
 

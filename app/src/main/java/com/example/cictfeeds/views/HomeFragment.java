@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cictfeeds.MainActivity;
 import com.example.cictfeeds.R;
+import com.example.cictfeeds.models.Admin;
 import com.example.cictfeeds.models.Post;
 import com.example.cictfeeds.utils.AppRepository;
 import com.example.cictfeeds.utils.SessionManager;
@@ -30,13 +31,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class HomeFragment extends Fragment {
-
+    Admin admin = new Admin();
     private LinearLayout llUpcomingEvents;
     private LinearLayout llPreviousEvents;
     private  TextView tvWelcomeName;
 
     //upcoming week tvs
-    private TextView tvFirstDayLabel, tvSecondDayLabel, tvThirdDayLabel, tvFourthDayLabel, tvFifthDayLabel, tvSixthDayLabel, tvSeventhDayLabel,
+    private TextView tvUpcomingPlaceholder, tvFirstDayLabel, tvSecondDayLabel, tvThirdDayLabel, tvFourthDayLabel, tvFifthDayLabel, tvSixthDayLabel, tvSeventhDayLabel,
     tvFirstDayNum, tvSecondDayNum, tvThirdDayNum, tvFourthDayNum, tvFifthDayNum, tvSixthDayNum, tvSeventhDayNum,
     tvFirstDayEvent, tvSecondDayEvent, tvThirdDayEvent, tvFourthDayEvent, tvFifthDayEvent, tvSixthDayEvent, tvSeventhDayEvent;
     private ArrayList<Post> postList;
@@ -62,28 +63,18 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialize views properly
-
-        //llPreviousEvents = view.findViewById(R.id.llPreviousEvents);
         llUpcomingEvents = view.findViewById(R.id.llUpcomingEvents);
         tvWelcomeName = view.findViewById(R.id.tvWelcomeName);
 
         tvWelcomeName.setText(SessionManager.getCurrentStudent().getFirstname());
         initializeTVUpcoming(view);
 
-        /*
-        // Populate data
-        postList.add(new Post("POST20250001", "Welcome to CICT Feeds", "This is our first official post for the community!", "Announcement"));
-        postList.add(new Post("POST20250002", "Tech Fair 2025", "Join us at the annual Tech Fair happening next week!", "Event"));
-        postList.add(new Post("POST20250003", "Exam Schedule Released", "Final exam schedules for all departments are now posted.", "Update"));
-        postList.add(new Post("POST20250004", "New Facilities Opened", "The new computer lab is now open for all CICT students.", "News"));
 
-        renderPreviewPost(view);
-        */
     }
 
     private void initializeTVUpcoming(View view){
         // Day of Labels
+        tvUpcomingPlaceholder = view.findViewById(R.id.tvUpcomingPlaceholder);
         tvFirstDayLabel = view.findViewById(R.id.tvFirstDayLabel);
         tvSecondDayLabel = view.findViewById(R.id.tvSecondDayLabel);
         tvThirdDayLabel = view.findViewById(R.id.tvThirdDayLabel);
@@ -170,6 +161,8 @@ public class HomeFragment extends Fragment {
 
         }
 
+
+
         tvFirstDayEvent.setText(numOfEventsInAWeek[0] + " Event");
         tvSecondDayEvent.setText(numOfEventsInAWeek[1] + " Event");
         tvThirdDayEvent.setText(numOfEventsInAWeek[2] + " Event");
@@ -189,7 +182,11 @@ public class HomeFragment extends Fragment {
             }
         }
 
-        renderPreviewPost(view);
+        if(!postUpcomingLists.isEmpty()){
+            renderPreviewPost(view);
+            tvUpcomingPlaceholder.setVisibility(View.GONE);
+        }
+
 
 
     }
@@ -210,11 +207,11 @@ public class HomeFragment extends Fragment {
 
             tvTag.setText(post.getTag());
             tvTitle.setText(post.getTitle());
-            tvExtraDetails.setText(post.getPostId());
+            tvExtraDetails.setText("Posted By: "+admin.getFirstName() +" " + admin.getLastName());
             llUpcomingEvents.addView(postPreviewUpcoming);
             btnViewDetails.setOnClickListener( v -> goToFeed(post.getPostId()));
 
-            //possibly remove this shi
+            //possibly remove this
             // Previous
 //            View postPreviewPrevious = inflater.inflate(R.layout.item_post_preview, llPreviousEvents, false);
 //            tvTag = postPreviewPrevious.findViewById(R.id.tvTag);

@@ -62,8 +62,8 @@
                         android:orientation="vertical"
                         android:paddingTop="2dp"
                         android:paddingBottom="2dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
+                        android:paddingLeft="9dp"
+                        android:paddingRight="9dp">
 
                         <TextView
                             android:id="@+id/tvFirstDayLabel"
@@ -100,8 +100,8 @@
                         android:orientation="vertical"
                         android:paddingTop="2dp"
                         android:paddingBottom="2dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
+                        android:paddingLeft="9dp"
+                        android:paddingRight="9dp">
 
                         <TextView
                             android:id="@+id/tvSecondDayLabel"
@@ -138,8 +138,8 @@
                         android:orientation="vertical"
                         android:paddingTop="2dp"
                         android:paddingBottom="2dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
+                        android:paddingLeft="9dp"
+                        android:paddingRight="9dp">
 
                         <TextView
                             android:id="@+id/tvThirdDayLabel"
@@ -176,8 +176,8 @@
                         android:orientation="vertical"
                         android:paddingTop="2dp"
                         android:paddingBottom="2dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
+                        android:paddingLeft="9dp"
+                        android:paddingRight="9dp">
 
                         <TextView
                             android:id="@+id/tvFourthDayLabel"
@@ -214,8 +214,8 @@
                         android:orientation="vertical"
                         android:paddingTop="2dp"
                         android:paddingBottom="2dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
+                        android:paddingLeft="9dp"
+                        android:paddingRight="9dp">
 
                         <TextView
                             android:id="@+id/tvFifthDayLabel"
@@ -252,8 +252,8 @@
                         android:orientation="vertical"
                         android:paddingTop="2dp"
                         android:paddingBottom="2dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
+                        android:paddingLeft="9dp"
+                        android:paddingRight="9dp">
 
                         <TextView
                             android:id="@+id/tvSixthDayLabel"
@@ -290,8 +290,8 @@
                         android:orientation="vertical"
                         android:paddingTop="2dp"
                         android:paddingBottom="2dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
+                        android:paddingLeft="9dp"
+                        android:paddingRight="9dp">
 
                         <TextView
                             android:id="@+id/tvSeventhDayLabel"
@@ -355,8 +355,19 @@
                         android:orientation="horizontal"
                         android:paddingLeft="10dp">
 
-
+                        <TextView
+                            android:id="@+id/tvUpcomingPlaceholder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Currently there's no upcoming events"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="10dp"
+                            android:paddingLeft="10dp"
+                            android:textAlignment="center"
+                            android:fontFamily="@font/poppins_medium"/>
                     </LinearLayout>
+
+
 
                 </HorizontalScrollView>
 

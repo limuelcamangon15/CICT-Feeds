@@ -282,7 +282,7 @@
                 style="@style/CustomEditText"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="2023100000@bulsu.edu.ph"
+                android:hint="example@gmail.com"
                 android:inputType="textEmailAddress"
                 android:enabled="false"
                 android:layout_marginTop="4dp" />
@@ -295,99 +295,106 @@
             android:paddingHorizontal="16dp"
             android:paddingBottom="24dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Academic Information"
-                android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginBottom="8dp" />
+                <LinearLayout
+                    android:id="@+id/llAcademicInformation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/lightGray100"
-                android:layout_marginBottom="12dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Academic Information"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="8dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Course"
-                android:fontFamily="@font/poppins"
-                android:textColor="@color/gray"
-                android:textSize="12sp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightGray100"
+                        android:layout_marginBottom="12dp" />
 
-            <AutoCompleteTextView
-                android:id="@+id/actvCourse"
-                style="@style/CustomAutoCompleteTextView"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="Course"
-                android:drawableRight="@drawable/icon_dropdown"
-                android:drawablePadding="5dp"
-                android:focusable="false"
-                android:cursorVisible="false"
-                android:enabled="false"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Course"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Year Level"
-                android:fontFamily="@font/poppins"
-                android:textColor="@color/gray"
-                android:textSize="12sp"
-                android:layout_marginTop="12dp" />
+                    <AutoCompleteTextView
+                        android:id="@+id/actvCourse"
+                        style="@style/CustomAutoCompleteTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:hint="Course"
+                        android:drawableRight="@drawable/icon_dropdown"
+                        android:drawablePadding="5dp"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:enabled="false"/>
 
-            <AutoCompleteTextView
-                android:id="@+id/actvYearLevel"
-                style="@style/CustomAutoCompleteTextView"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="Year Level"
-                android:drawableRight="@drawable/icon_dropdown"
-                android:drawablePadding="5dp"
-                android:focusable="false"
-                android:cursorVisible="false"
-                android:enabled="false"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Year Level"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp"
+                        android:layout_marginTop="12dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Section"
-                android:fontFamily="@font/poppins"
-                android:textColor="@color/gray"
-                android:textSize="12sp"
-                android:layout_marginTop="12dp" />
+                    <AutoCompleteTextView
+                        android:id="@+id/actvYearLevel"
+                        style="@style/CustomAutoCompleteTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:hint="Year Level"
+                        android:drawableRight="@drawable/icon_dropdown"
+                        android:drawablePadding="5dp"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:enabled="false"/>
 
-            <EditText
-                android:id="@+id/etSection"
-                style="@style/CustomEditText"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="Section"
-                android:enabled="false"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Section"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp"
+                        android:layout_marginTop="12dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Specialization"
-                android:fontFamily="@font/poppins"
-                android:textColor="@color/gray"
-                android:textSize="12sp"
-                android:layout_marginTop="12dp" />
+                    <EditText
+                        android:id="@+id/etSection"
+                        style="@style/CustomEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:hint="Section"
+                        android:enabled="false"/>
 
-            <AutoCompleteTextView
-                android:id="@+id/actvSpecialization"
-                style="@style/CustomAutoCompleteTextView"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="Specialization"
-                android:drawableRight="@drawable/icon_dropdown"
-                android:drawablePadding="5dp"
-                android:focusable="false"
-                android:cursorVisible="false"
-                android:enabled="false"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Specialization"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp"
+                        android:layout_marginTop="12dp" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/actvSpecialization"
+                        style="@style/CustomAutoCompleteTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:hint="Specialization"
+                        android:drawableRight="@drawable/icon_dropdown"
+                        android:drawablePadding="5dp"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:enabled="false"/>
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/btnSaveChanges"
